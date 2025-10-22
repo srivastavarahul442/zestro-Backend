@@ -12,7 +12,8 @@ export class UserService {
   // Create a new user
   async create(createUserDto: CreateUserDto): Promise<User> {
     const createdUser = new this.userModel(createUserDto);
-    return createdUser.save();
+    const savedUser = await createdUser.save();
+     return savedUser.populate('restroId');
   }
 
   // Find user by email
@@ -22,7 +23,7 @@ export class UserService {
 
   // Find all users
   async findAll(): Promise<User[]> {
-    return this.userModel.find().exec();
+    return this.userModel.find().populate('restroId').exec();
   }
 
   // Update user by ID (fix type issue)
