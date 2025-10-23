@@ -3,15 +3,21 @@ import { Controller, Post, Get, Patch, Delete, Param, Body, NotFoundException } 
 import { RestaurantService } from './restaurant.service';
 import { CreateRestaurantDto } from './dto/restaurant.dto';
 import { Restaurant } from '../restaurant/schema/restaurant.schema';
+import { CreateRestaurantAndUserDto } from './dto/create-restaurant-and-user.dto';
 
 @Controller('restaurants')
 export class RestaurantController {
     constructor(private readonly restaurantService: RestaurantService) {}
 
+    // @Post()
+    // async createRestaurant(@Body() createRestaurantDto: CreateRestaurantDto): Promise<Restaurant> {
+    //     return this.restaurantService.create(createRestaurantDto);
+    // }
+
     @Post()
-    async createRestaurant(@Body() createRestaurantDto: CreateRestaurantDto): Promise<Restaurant> {
-        return this.restaurantService.create(createRestaurantDto);
-    }
+    async createWithOwner(@Body() createRestaurantAndUserDto: CreateRestaurantAndUserDto): Promise<any> {
+        return this.restaurantService.createRestaurantAndUser(createRestaurantAndUserDto);
+   }
 
     @Get()
     async findAllRestaurants(): Promise<Restaurant[]> {
