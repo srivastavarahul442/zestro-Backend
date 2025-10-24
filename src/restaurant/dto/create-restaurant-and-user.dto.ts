@@ -1,19 +1,15 @@
 /* eslint-disable prettier/prettier */
-import { IsNotEmpty, IsString, IsOptional, IsNumber, IsEmail } from 'class-validator';
+import { IsNotEmpty, IsString, IsOptional, IsEmail } from 'class-validator';
 
 export class CreateRestaurantAndUserDto {
-    // Restaurant details
+    // 🏢 Restaurant details
     @IsString()
     @IsNotEmpty()
     restaurantName: string;
 
     @IsString()
     @IsNotEmpty()
-    cuisineType: string;
-
-    @IsNumber()
-    @IsNotEmpty()
-    seatingCapacity: number;
+    gstNumber: string;
 
     @IsString()
     @IsOptional()
@@ -21,9 +17,34 @@ export class CreateRestaurantAndUserDto {
 
     @IsString()
     @IsOptional()
+    restaurantLogo?: string;
+
+    @IsString()
+    @IsOptional()
     description?: string;
 
-    // User details
+    // 🏠 Address Details
+    @IsString()
+    @IsNotEmpty()
+    address: string;
+
+    @IsString()
+    @IsNotEmpty()
+    city: string;
+
+    @IsString()
+    @IsNotEmpty()
+    state: string;
+
+    @IsString()
+    @IsNotEmpty()
+    postalCode: string;
+
+    @IsString()
+    @IsNotEmpty()
+    country: string;
+
+    // 👤 User (owner) details
     @IsString()
     @IsNotEmpty()
     userName: string;
@@ -34,6 +55,7 @@ export class CreateRestaurantAndUserDto {
 
     @IsString()
     @IsNotEmpty()
+    @IsOptional()
     password: string;
 
     @IsString()
@@ -46,7 +68,7 @@ export class CreateRestaurantAndUserDto {
 
     @IsString()
     @IsOptional()
-    address?: string;
+    addressLine?: string;
 
     @IsString()
     @IsOptional()

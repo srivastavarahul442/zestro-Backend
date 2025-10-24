@@ -1,5 +1,5 @@
 /* eslint-disable prettier/prettier */
-import { IsNotEmpty, IsNumber, IsOptional, IsString } from 'class-validator';
+import { IsNotEmpty, IsOptional, IsString } from 'class-validator';
 
 export class CreateRestaurantDto {
     @IsString()
@@ -8,11 +8,7 @@ export class CreateRestaurantDto {
 
     @IsString()
     @IsNotEmpty()
-    cuisineType: string;
-
-    @IsNumber()
-    @IsNotEmpty()
-    seatingCapacity: number;
+    gstNumber: string;
 
     @IsString()
     @IsOptional()
@@ -20,5 +16,30 @@ export class CreateRestaurantDto {
 
     @IsString()
     @IsOptional()
+    restaurantLogo?: string;
+
+    @IsString()
+    @IsOptional()
     description?: string;
+
+    // 🏠 Address Details
+    @IsString()
+    @IsNotEmpty()
+    address: string;
+
+    @IsString()
+    @IsNotEmpty()
+    city: string;
+
+    @IsString()
+    @IsNotEmpty()
+    state: string;
+
+    @IsString()
+    @IsNotEmpty()
+    postalCode: string;
+
+    @IsString()
+    @IsNotEmpty()
+    country: string;
 }
